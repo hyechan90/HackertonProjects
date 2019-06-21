@@ -1,50 +1,50 @@
-#include "pokemon.h"// Çì´õÆÄÀÏ
+#include "pokemon.h"// í—¤ë”íŒŒì¼
 
 int main() {
 	mob* p1[MAX_POKEMON];
 	mob* p2[MAX_POKEMON];
 	static int i, coin, iPokemon, iSkill, dmg, isGameOver;
 
-	//ÇÃ·¹ÀÌ¾î1 ¸Ş¸ğ¸® ÇÒ´ç
+	//í”Œë ˆì´ì–´1 ë©”ëª¨ë¦¬ í• ë‹¹
 	for (i = 0; i < sizeof(p1) / sizeof(struct mob*); i++) {
 		p1[i] = malloc(sizeof(mob));
 	}
 
-	bulbasaur(p1[0]);// ÇÃ·¹ÀÌ¾î 1ÀÇ Æ÷ÄÏ¸óµé ¼±¾ğ
+	bulbasaur(p1[0]);// í”Œë ˆì´ì–´ 1ì˜ í¬ì¼“ëª¬ë“¤ ì„ ì–¸
 	pikachu(p1[1]);
 	charmander(p1[2]);
 	squirtle(p1[3]);
 
-	//ÇÃ·¹ÀÌ¾î2 ¸Ş¸ğ¸® ÇÒ´ç
+	//í”Œë ˆì´ì–´2 ë©”ëª¨ë¦¬ í• ë‹¹
 	for (i = 0; i < sizeof(p2) / sizeof(struct mob*); i++) {
 		p2[i] = malloc(sizeof(mob));
 	}
 
-	eevee(p2[0]);//  ÇÃ·¹ÀÌ¾î 2ÀÇ Æ÷ÄÏ¸óµé ¼±¾ğ
+	eevee(p2[0]);//  í”Œë ˆì´ì–´ 2ì˜ í¬ì¼“ëª¬ë“¤ ì„ ì–¸
 	cubone(p2[1]);
 	machop(p2[2]);
 	growlithe(p2[3]);
 
-	coinToss(&coin);// µ¿ÀüÀ» ´øÁ®¼­ ¼±À» °¡¸²
+	coinToss(&coin);// ë™ì „ì„ ë˜ì ¸ì„œ ì„ ì„ ê°€ë¦¼
 
 	while (1) {
-		printf("»ç¿ëÇÏ½Ç Æ÷ÄÏ¸óÀ» °í¸£¼¼¿ä.\n");
-		if (coin % 2) {// ÄÚÀÎÀÌ È¦¼ö¸é ÇÃ·¹ÀÌ¾î 1ÀÇ ÅÏÀÌ°í, Â¦¼ö¸é ÇÃ·¹ÀÌ¾î 2ÀÇ ÅÏ
-			for (i = 0; i < sizeof(p1) / sizeof(struct mob*); i++) {// ÇÃ·¹ÀÌ¾î 1ÀÇ Æ÷ÄÏ¸ó Ãâ·Â
+		printf("ì‚¬ìš©í•˜ì‹¤ í¬ì¼“ëª¬ì„ ê³ ë¥´ì„¸ìš”.\n");
+		if (coin % 2) {// ì½”ì¸ì´ í™€ìˆ˜ë©´ í”Œë ˆì´ì–´ 1ì˜ í„´ì´ê³ , ì§ìˆ˜ë©´ í”Œë ˆì´ì–´ 2ì˜ í„´
+			for (i = 0; i < sizeof(p1) / sizeof(struct mob*); i++) {// í”Œë ˆì´ì–´ 1ì˜ í¬ì¼“ëª¬ ì¶œë ¥
 				printf("%d : ", i + 1);
 				printPPokemon(p1[i]);
 			}
 
 			while (1) {
-				iPokemon = pickPokemon(iPokemon);// ÇÃ·¹ÀÌ¾î 1 Æ÷ÄÏ¸ó ¼±ÅÃ
-				if (p1[iPokemon]->hp <= 0)// ¸¸¾à ¼±ÅÃÇÑ Æ÷ÄÏ¸óÀÇ Ã¼·ÂÀÌ 0ÀÌÇÏ¸é »ç¿ë ºÒ°¡
-					printf("±× Æ÷ÄÏ¸óÀº ¾µ ¼ö ¾ø½À´Ï´Ù.\n");
+				iPokemon = pickPokemon(iPokemon);// í”Œë ˆì´ì–´ 1 í¬ì¼“ëª¬ ì„ íƒ
+				if (p1[iPokemon]->hp <= 0)// ë§Œì•½ ì„ íƒí•œ í¬ì¼“ëª¬ì˜ ì²´ë ¥ì´ 0ì´í•˜ë©´ ì‚¬ìš© ë¶ˆê°€
+					printf("ê·¸ í¬ì¼“ëª¬ì€ ì“¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
 				else
 					break;
 			}
 			system("cls");
 
-			printPDmg(p1[iPokemon]);// ±âº» °ø°İ ¶Ç´Â ½ºÅ³ ¼±ÅÃ
+			printPDmg(p1[iPokemon]);// ê¸°ë³¸ ê³µê²© ë˜ëŠ” ìŠ¤í‚¬ ì„ íƒ
 			iSkill = pickSkill(p1[iPokemon],iSkill);
 			system("cls");
 
@@ -56,16 +56,16 @@ int main() {
 			else
 				dmg = p1[iPokemon]->basicDmg;
 
-			printf("°ø°İÇÒ Àû Æ÷ÄÏ¸óÀ» Á¤ÇØÁÖ¼¼¿ä.\n");
+			printf("ê³µê²©í•  ì  í¬ì¼“ëª¬ì„ ì •í•´ì£¼ì„¸ìš”.\n");
 
-			for (i = 0; i < sizeof(p1) / sizeof(struct mob*); i++) {// »ó´ë¹æ Æ÷ÄÏ¸ó Ãâ·Â
+			for (i = 0; i < sizeof(p1) / sizeof(struct mob*); i++) {// ìƒëŒ€ë°© í¬ì¼“ëª¬ ì¶œë ¥
 				printf("%d : ", i + 1);
 				printPPokemon(p2[i]);
 			}
 			while (1) {
 				iPokemon = pickPokemon(iPokemon);
 				if (p2[iPokemon]->hp <= 0)
-					printf("±× Æ÷ÄÏ¸óÀº ÀÌ¹Ì ¾²·¯Á³½À´Ï´Ù.\n");
+					printf("ê·¸ í¬ì¼“ëª¬ì€ ì´ë¯¸ ì“°ëŸ¬ì¡ŒìŠµë‹ˆë‹¤.\n");
 				else
 					break;
 			}
@@ -84,7 +84,7 @@ int main() {
 			while (1) {
 				iPokemon = pickPokemon(iPokemon);
 				if (p2[iPokemon]->hp <= 0)
-					printf("±× Æ÷ÄÏ¸óÀº ¾µ ¼ö ¾ø½À´Ï´Ù.\n");
+					printf("ê·¸ í¬ì¼“ëª¬ì€ ì“¸ ìˆ˜ ì—†ìŠµë‹ˆë‹¤.\n");
 				else
 					break;
 			}
@@ -103,7 +103,7 @@ int main() {
 				dmg = p2[iPokemon]->basicDmg;
 			}
 
-			printf("°ø°İÇÒ Àû Æ÷ÄÏ¸óÀ» Á¤ÇØÁÖ¼¼¿ä.\n");
+			printf("ê³µê²©í•  ì  í¬ì¼“ëª¬ì„ ì •í•´ì£¼ì„¸ìš”.\n");
 			for (i = 0; i < sizeof(p1) / sizeof(struct mob*); i++) {
 				printf("%d : ", i + 1);
 				printPPokemon(p1[i]);
@@ -111,7 +111,7 @@ int main() {
 			while (1) {
 				iPokemon = pickPokemon(iPokemon);
 				if (p1[iPokemon]->hp <= 0)
-					printf("±× Æ÷ÄÏ¸óÀº ÀÌ¹Ì ¾²·¯Á³½À´Ï´Ù.\n");
+					printf("ê·¸ í¬ì¼“ëª¬ì€ ì´ë¯¸ ì“°ëŸ¬ì¡ŒìŠµë‹ˆë‹¤.\n");
 				else
 					break;
 			}
@@ -122,12 +122,12 @@ int main() {
 			coin++;
 		}
 
-		//°ÔÀÓ ¿À¹ö ÆÇ´Ü
+		//ê²Œì„ ì˜¤ë²„ íŒë‹¨
 		for (i = 0; i < sizeof(p1) / sizeof(struct mob*); i++) {
 			isGameOver += checkGameOver(p1[i]);
 		}
 		if (isGameOver == 4) {
-			printf("ÇÃ·¹ÀÌ¾î 2´ÔÀÌ ½Â¸®ÇÏ¼Ì½À´Ï´Ù!\n");
+			printf("í”Œë ˆì´ì–´ 2ë‹˜ì´ ìŠ¹ë¦¬í•˜ì…¨ìŠµë‹ˆë‹¤!\n");
 			exit(0);
 		}
 		isGameOver = 0;
@@ -136,13 +136,13 @@ int main() {
 			isGameOver += checkGameOver(p2[i]);
 		}
 		if (isGameOver == 4) {
-			printf("ÇÃ·¹ÀÌ¾î 1´ÔÀÌ ½Â¸®ÇÏ¼Ì½À´Ï´Ù!\n");
+			printf("í”Œë ˆì´ì–´ 1ë‹˜ì´ ìŠ¹ë¦¬í•˜ì…¨ìŠµë‹ˆë‹¤!\n");
 			exit(0);
 		}
 		isGameOver = 0;
 	}
 
-	//µ¿Àû ¸Ş¸ğ¸® ÇØÁ¦
+	//ë™ì  ë©”ëª¨ë¦¬ í•´ì œ
 	for (i = 0; i < sizeof(p1) / sizeof(struct mob*); i++) {
 		free(p1[i]);
 	}
@@ -151,40 +151,40 @@ int main() {
 	}
 }
 
-//¼± Á¤ÇÏ±â
+//ì„  ì •í•˜ê¸°
 void coinToss(int *coin)
 {
 	srand(time(NULL));
 	*coin = rand() % 2;
 	if (*coin) {
-		printf("ÇÃ·¹ÀÌ¾î 1 ¼±\n");
+		printf("í”Œë ˆì´ì–´ 1 ì„ \n");
 	}
 	else {
-		printf("ÇÃ·¹ÀÌ¾î 2 ¼±\n");
+		printf("í”Œë ˆì´ì–´ 2 ì„ \n");
 	}
 }
 
-// ÇÃ·¹ÀÌ¾î Æ÷ÄÏ¸ó Á¤ÇÏ±â
+// í”Œë ˆì´ì–´ í¬ì¼“ëª¬ ì •í•˜ê¸°
 void printPPokemon(mob * p)
 {
-	printf("%s\tÃ¼·Â : %d\t¸¶³ª : %d\n", p->name, p->hp, p->mp);
+	printf("%s\tì²´ë ¥ : %d\të§ˆë‚˜ : %d\n", p->name, p->hp, p->mp);
 }
 
-//Æ÷ÄÏ¸óÀÇ ±âº» °ø°İ, ½ºÅ³ µ¥¹ÌÁö Ãâ·Â
+//í¬ì¼“ëª¬ì˜ ê¸°ë³¸ ê³µê²©, ìŠ¤í‚¬ ë°ë¯¸ì§€ ì¶œë ¥
 void printPDmg(mob * p)
 {
-	printf("ÇÏ½Ç Çàµ¿À» Á¤ÇÏ¼¼¿ä.\n");
-	printf("1 : ±âº» °ø°İ\tµ¥¹ÌÁö : %d\n", p->basicDmg);
-	printf("2 : %s\tµ¥¹ÌÁö : %d\t»ç¿ë ¸¶³ª : %d\n", p->skillName, p->skillDmg, p->mpCost);
+	printf("í•˜ì‹¤ í–‰ë™ì„ ì •í•˜ì„¸ìš”.\n");
+	printf("1 : ê¸°ë³¸ ê³µê²©\të°ë¯¸ì§€ : %d\n", p->basicDmg);
+	printf("2 : %s\të°ë¯¸ì§€ : %d\tì‚¬ìš© ë§ˆë‚˜ : %d\n", p->skillName, p->skillDmg, p->mpCost);
 }
 
-//Æ÷ÄÏ¸ó °í¸£±â
+//í¬ì¼“ëª¬ ê³ ë¥´ê¸°
 int pickPokemon(int iPokemon)
 {
-		scanf_s("%d", &iPokemon);// °ªÀ» ¹ŞÀº ´ÙÀ½ switch case¹®À¸·Î ÆÇº°
+		scanf_s("%d", &iPokemon);// ê°’ì„ ë°›ì€ ë‹¤ìŒ switch caseë¬¸ìœ¼ë¡œ íŒë³„
 		switch (iPokemon)
 		{
-		case 1: // ¹è¿­Àº 0ºÎÅÍ ½ÃÀÛÇÏ±â ¶§¹®¿¡ return °ªÀº 1¾¿ ³·Ãã
+		case 1: // ë°°ì—´ì€ 0ë¶€í„° ì‹œì‘í•˜ê¸° ë•Œë¬¸ì— return ê°’ì€ 1ì”© ë‚®ì¶¤
 			return 0;
 		case 2:
 			return 1;
@@ -193,36 +193,35 @@ int pickPokemon(int iPokemon)
 		case 4:
 			return 3;
 		default:
-			printf("¼ıÀÚ¸¦ ÀÌ¿ëÇØ¼­ Æ÷ÄÏ¸óÀ» Á¤ÇØÁÖ¼¼¿ä.\n");
+			printf("ìˆ«ìë¥¼ ì´ìš©í•´ì„œ í¬ì¼“ëª¬ì„ ì •í•´ì£¼ì„¸ìš”.\n");
 			pickPokemon(iPokemon);
 		}
 }
 
-//±âº» °ø°İ ¶Ç´Â ½ºÅ³ °í¸£±â
+//ê¸°ë³¸ ê³µê²© ë˜ëŠ” ìŠ¤í‚¬ ê³ ë¥´ê¸°
 int pickSkill(mob *p,int iSkill)
 {
 	while (1) {
 		scanf_s("%d", &iSkill);
 		switch (iSkill)
 		{
-		case 1:// ±âº» °ø°İ
+		case 1:// ê¸°ë³¸ ê³µê²©
 			return 0;
-		case 2:// ½ºÅ³ »ç¿ë
-			if (p->mp < p->mpCost) {// ¸¶³ª°¡ ¸¶³ª »ç¿ë·®º¸´Ù ÀûÀ¸¸é ¸øÇÔ
-				printf("¸¶³ª°¡ ³Ê¹« Àû½À´Ï´Ù.\n");
+		case 2:// ìŠ¤í‚¬ ì‚¬ìš©
+			if (p->mp < p->mpCost) {// ë§ˆë‚˜ê°€ ë§ˆë‚˜ ì‚¬ìš©ëŸ‰ë³´ë‹¤ ì ìœ¼ë©´ ëª»í•¨
+				printf("ë§ˆë‚˜ê°€ ë„ˆë¬´ ì ìŠµë‹ˆë‹¤.\n");
 				break;
 			}
 			return 1;
 		default:
-			printf("¼ıÀÚ¸¦ ÀÌ¿ëÇØ¼­ Æ÷ÄÏ¸óÀÌ ÇÒ Çàµ¿À» Á¤ÇØÁÖ¼¼¿ä.\n");
+			printf("ìˆ«ìë¥¼ ì´ìš©í•´ì„œ í¬ì¼“ëª¬ì´ í•  í–‰ë™ì„ ì •í•´ì£¼ì„¸ìš”.\n");
 			break;
 		}
 	}
 }
-
-//°ÔÀÓ ¿À¹ö ÆÇ´Ü
+//ê²Œì„ ì˜¤ë²„ íŒë‹¨
 int checkGameOver(mob* p)
 {
-	if (p->hp <= 0)// ¸¸¾à Æ÷ÄÏ¸óÀÇ Ã¼·ÂÀÌ 0ÀÌÇÏ¸é 1À» returnÇÔ
+	if (p->hp <= 0)// ë§Œì•½ í¬ì¼“ëª¬ì˜ ì²´ë ¥ì´ 0ì´í•˜ë©´ 1ì„ returní•¨
 		return 1;
 }
