@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Caluator</title>
+    <link rel="stylesheet" href="caluator.css" type="text/css">
+    <script type="text/javascript" src="caluator.js"></script>
+</head>
+<body>
+    <table border="1">
+        <tr>
+            <td colspan="4">
+                <input type="text" id="view">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                <input type="text" id="result">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" onclick="reset()">AC</td>
+            <td onclick="put('/')">/</td>
+        </tr>
+        <tr>
+            <td onclick="put(7)">7</td>
+            <td onclick="put(8)">8</td>
+            <td onclick="put(9)">9</td>
+            <td onclick="put('*')">*</td>
+        </tr>
+        <tr>
+            <td onclick="put(4)">4</td>
+            <td onclick="put(5)">5</td>
+            <td onclick="put(6)">6</td>
+            <td onclick="put('-')">-</td>
+        </tr>
+        <tr>
+            <td onclick="put(1)">1</td>
+            <td onclick="put(2)">2</td>
+            <td onclick="put(3)">3</td>
+            <td onclick="put('+')">+</td>
+        </tr>
+        <tr>
+            <td colspan="2" onclick="put(0)">0</td>
+            <td onclick="put('.')">.</td>
+            <td onclick="calculate()">=</td>
+        </tr>
+    </table>
+</body>
+</html>
